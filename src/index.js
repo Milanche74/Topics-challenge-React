@@ -1,17 +1,55 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "./styles.css";
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
+import WordCloud from "./components/word-cloud";
+import Metadata from "./components/metadata";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [data, setData] = React.useState([]);
+  // let metadata;
+  const [metadata, setMetadata] = React.useState({});
+  const [wordCloudData, setWordCloudData] = React.useState([]);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchData();
+      const formatCloudData = data.map(({ label, volume, sentimentScore }) => ({
+        label,
+        volume,
+        sentimentScore,
+      }));
+      setWordCloudData(formatCloudData);
+      setData(data);
+    };
+
+    getData();
+  }, []);
+
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:5000/topics");
+    const data = await response.json();
+    return data;
+  };
+  const onClickHandler = (index) => {
+    const dataClone = [...data];
+    const metadata = {
+      label: dataClone[index].label,
+      sentiment: dataClone[index].sentiment,
+      volume: dataClone[index].volume,
+    };
+    setMetadata(metadata);
+    console.log("asdasdas");
+  };
+  
+  return (
+    <div className="app">
+      <h1>My topics challenge - React</h1>
+      <div className="topics-container">
+        <WordCloud wordsData={wordCloudData} onClickHandler={onClickHandler} />
+        <Metadata metadata={metadata}></Metadata>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
