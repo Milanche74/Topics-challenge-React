@@ -89,7 +89,7 @@ const WordCloud = ({ wordsData, onClickHandler }) => {
   refactorWords();
 
   return (
-    <ReactWordcloud words={words} options={options} callbacks={callbacks} />
+    <ReactWordcloud className="word-cloud" words={words} options={options} callbacks={callbacks} />
   );
 };
 

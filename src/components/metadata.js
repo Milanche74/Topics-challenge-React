@@ -12,7 +12,8 @@ const baseChartOptions = {
     labels: {
       rotation: 0,
       style: {
-        fontSize: "16px",
+        fontSize: "18px",
+        textOverflow: "none",
       },
     },
   },
@@ -35,14 +36,14 @@ const Metadata = ({ metadata }) => {
       title: {
         text: `Sentiment Score for: ${metadata?.label}`,
         style: {
-            fontSize: "36px"
-        }
+          fontSize: "36px",
+        },
       },
       subtitle: {
         text: `${metadata?.volume}`,
         style: {
-            fontSize: "24px"
-        }
+          fontSize: "24px",
+        },
       },
       series: {
         data: [
@@ -65,7 +66,11 @@ const Metadata = ({ metadata }) => {
 
   return (
     <div className="metadata-container">
-      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      <HighchartsReact
+        className="chart"
+        highcharts={Highcharts}
+        options={chartOptions}
+      />
     </div>
   );
 };

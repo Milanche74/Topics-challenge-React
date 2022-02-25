@@ -1,8 +1,9 @@
-import "./styles.css";
+
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import WordCloud from "./components/word-cloud";
 import Metadata from "./components/metadata";
+import "./styles.css";
 
 const App = () => {
   const [data, setData] = React.useState([]);
@@ -27,7 +28,7 @@ const App = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/topics");
+    const response = await fetch("http://localhost:4000/topics");
     const data = await response.json();
     return data;
   };
@@ -44,11 +45,12 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>My topics challenge - React</h1>
-      <div className="topics-container">
+      <h1 className="header">My topics challenge - React</h1>
+      <div className="container">
         <WordCloud wordsData={wordCloudData} onClickHandler={onClickHandler} />
         {metadata && <Metadata metadata={metadata}></Metadata>}
       </div>
+      <footer><a href="https://github.com/Milanche74">https://github.com/Milanche74</a></footer>
     </div>
   );
 };
