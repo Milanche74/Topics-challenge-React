@@ -7,8 +7,9 @@ import Metadata from "./components/metadata";
 const App = () => {
   const [data, setData] = React.useState([]);
   // let metadata;
-  const [metadata, setMetadata] = React.useState({});
+  const [metadata, setMetadata] = React.useState();
   const [wordCloudData, setWordCloudData] = React.useState([]);
+
 
   useEffect(() => {
     const getData = async () => {
@@ -30,6 +31,7 @@ const App = () => {
     const data = await response.json();
     return data;
   };
+
   const onClickHandler = (index) => {
     const dataClone = [...data];
     const metadata = {
@@ -38,15 +40,14 @@ const App = () => {
       volume: dataClone[index].volume,
     };
     setMetadata(metadata);
-    console.log("asdasdas");
   };
-  
+
   return (
     <div className="app">
       <h1>My topics challenge - React</h1>
       <div className="topics-container">
         <WordCloud wordsData={wordCloudData} onClickHandler={onClickHandler} />
-        <Metadata metadata={metadata}></Metadata>
+        {metadata && <Metadata metadata={metadata}></Metadata>}
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ const options = {
   fontSizes: [18, 96],
   rotations: 5,
   rotationAngles: [0, 45],
+  deterministic: true,
 };
 
 const WordCloud = ({ wordsData, onClickHandler }) => {
@@ -21,7 +22,7 @@ const WordCloud = ({ wordsData, onClickHandler }) => {
         index: index,
       };
     });
-    // console.log(refactoredWords);
+
     words = refactoredWords;
   };
   const callbacks = {
@@ -86,15 +87,10 @@ const WordCloud = ({ wordsData, onClickHandler }) => {
     return steps;
   };
   refactorWords();
-  console.log("render");
+
   return (
     <ReactWordcloud words={words} options={options} callbacks={callbacks} />
   );
 };
-// const areEqual = (prevProps, nextProps) => {
-//   if (prevProps.wordsData === nextProps.wordsData) {
-//     return true;
-//   } else return false;
-// };
 
 export default React.memo(WordCloud);
