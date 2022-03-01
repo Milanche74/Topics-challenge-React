@@ -57,7 +57,7 @@ export const refactorWords = (data) => {
       index: index,
     };
   });
-  console.log(refactoredWords)
+  
   return words = refactoredWords;
 };
 const options = {
