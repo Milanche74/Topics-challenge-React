@@ -12,7 +12,7 @@ const App = () => {
   const [wordCloudData, setWordCloudData] = React.useState([]);
 
 
-  useEffect(() => {
+  useEffect(() => { 
     const getData = async () => {
       const data = await fetchData();
       const formatCloudData = data.map(({ label, volume, sentimentScore }) => ({
@@ -54,5 +54,7 @@ const App = () => {
     </div>
   );
 };
+
+export default App
 
 ReactDOM.render(<App />, document.getElementById("root"));

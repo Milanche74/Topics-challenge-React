@@ -67,6 +67,7 @@ const Metadata = ({ metadata }) => {
   return (
     <div className="metadata-container">
       <HighchartsReact
+      role="chart"
         className="chart"
         highcharts={Highcharts}
         options={chartOptions}
