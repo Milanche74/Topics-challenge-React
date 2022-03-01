@@ -44,6 +44,6 @@ test("refactorWords should return correct data type", () => {
 
 // can't make this work
 
-// test('word-cloud should render correctly', ()=> {
-//   render(<WordCloud wordsData={{fakeWordsData}} />)
-// })
+test('word-cloud should render correctly', ()=> {
+  render(<WordCloud wordsData={{fakeWordsData}} />)
+})
